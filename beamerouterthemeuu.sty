@@ -1,0 +1,123 @@
+%% beamerouterthemeuu.sty
+%% Utrecht University Beamer Outer Theme
+%%
+%% LPPL 1.3c+
+
+\mode<presentation>
+
+\RequirePackage{tikz}
+\RequirePackage{graphicx}
+
+\newif\ifbeamer@uu@showslidenumber
+\beamer@uu@showslidenumbertrue
+
+\def\beamer@uu@footleft{}
+
+\DeclareOptionBeamer{noslidenumbering}{%
+  \beamer@uu@showslidenumberfalse
+}
+\ProcessOptionsBeamer
+
+\newcommand{\setuufootleft}[1]{%
+   \def\beamer@uu@footleft{#1}%
+}
+
+%-------------------------------------------------------------------------------
+% Footline
+\setbeamertemplate{footline}{%
+    \ifnum\thepage>1\relax% Not on title page
+    \begin{beamercolorbox}[
+        wd=\paperwidth,
+        ht=2.6ex,
+        dp=1.3ex
+    ]{uu simple footline}%
+        \hspace*{0.07\paperwidth}%
+        \usebeamerfont{footline}%
+        \ifx\beamer@uu@footleft\@empty
+          % nothing
+        \else
+          \textcolor{white}{\beamer@uu@footleft}
+        \fi
+        \hfill
+        % \ifbeamer@uu@showslidenumber
+        %   \usebeamerfont{page number in head/foot}\insertframenumber
+        % \fi
+        \hspace*{0.07\paperwidth}%
+    \end{beamercolorbox}%
+    \vspace*{1.5ex}%
+    \fi%
+}
+
+%-------------------------------------------------------------------------------
+% Frametitle
+\setbeamertemplate{frametitle}{%
+    \ifnum\thepage>1\relax% Not on title frame
+    \vspace{2.25ex}%
+    \begin{beamercolorbox}[wd=\textwidth]{frametitle}
+        \usebeamerfont{frametitle}%
+        \noindent
+        \insertframetitle\strut
+        \usebeamerfont{framesubtitle}%
+        \usebeamercolor[fg]{framesubtitle}%
+        \ \insertframesubtitle\par%
+    \end{beamercolorbox}%
+    \fi%
+}
+
+%-------------------------------------------------------------------------------
+% Background canvas
+\setbeamertemplate{background canvas}{%
+\backgroundcanvasblock%
+}
+
+\def\backgroundcanvasblock{%
+\usebeamercolor{background canvas}%
+\begin{tikzpicture}[remember picture,overlay]%
+\useasboundingbox (current page.south west) rectangle ++ (\the\paperwidth, \the\paperheight);%
+\path [fill,fill={background canvas.bg},draw=none,inner sep=0pt] (current page.south west) rectangle ++ (1.000\paperwidth,1.000\paperheight);%
+\end{tikzpicture}%
+}
+
+%-------------------------------------------------------------------------------
+% Background
+\setbeamertemplate{background}{%
+\ifnum\thepage=1\relax%
+\backgroundtitlepage%
+\fi%
+\footerbar%
+}
+
+%-------------------------------------------------------------------------------
+\def\backgroundtitlepage{%
+\begin{tikzpicture}[remember picture,overlay]%
+\useasboundingbox (current page.south west) rectangle ++ (\the\paperwidth, \the\paperheight);%
+\path (current page.south west) [fill,fill=yellowUU,draw=none,inner sep=0pt] ++ (0.000\paperwidth,0.407\paperheight) rectangle ++ (1.000\paperwidth,0.593\paperheight);
+\path (current page.south west) [fill,fill=redUU,draw=none,inner sep=0pt] ++ (0.000\paperwidth,0.305\paperheight) rectangle ++ (1.000\paperwidth,0.102\paperheight);
+% White area for logo - from 0.051 to 0.305
+\path (current page.south west) [fill,fill=whiteUU,draw=none,inner sep=0pt] ++ (0.000\paperwidth,0.051\paperheight) rectangle ++ (1.000\paperwidth,0.254\paperheight);
+% Place the official UU logo in right bottom corner
+\path (current page.south west) ++ (0.6\paperwidth,-0.06\paperheight) node [anchor=south east,inner sep=0pt,outer sep=0pt] {%
+\includegraphics[height=0.45\paperheight]{graphics/UU_logo_2021_EN_RGB.png}%
+};
+\end{tikzpicture}%
+}
+
+%-------------------------------------------------------------------------------
+% Footer bar
+\def\footerbar{%
+\ifnum\thepage=1\relax%
+% No footer bar on title page
+\else%
+\usebeamercolor{footline}%
+\begin{tikzpicture}[remember picture,overlay]%
+\useasboundingbox (current page.south west) rectangle ++ (\the\paperwidth, \the\paperheight);%
+% Black footer bar (wider: 0.08 instead of 0.051)
+\path (current page.south west) [fill,fill=blackUU,draw=none,inner sep=0pt] ++ (0.000\paperwidth,0.000\paperheight) rectangle ++ (1\paperwidth,0.08\paperheight);
+
+% Page number (right side)
+\path (current page.south west) -- ++ (0.95\paperwidth,0.04\paperheight) node [anchor=east,color=white,inner sep=0pt,outer sep=1pt] {\fontsize{10}{14}\selectfont\insertframenumber};
+\end{tikzpicture}%
+\fi%
+}
+
+\mode<all>

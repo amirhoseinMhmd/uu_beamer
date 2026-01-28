@@ -1,0 +1,35 @@
+# Utrecht University Matplotlib Style
+# Based on the official UU brand colors
+# Adapted from Leiden University theme
+
+# Primary Colors
+# Yellow: #FFCD00
+# Red: #C00A35
+# Black: #000000
+# White: #FFFFFF
+
+# Secondary Colors
+# Cream: #FFE6AB
+# Orange: #F3965E
+# Burgundy: #AA1555
+# Brown: #6E3B23
+# Green: #24A793
+# Blue: #5287C6
+# Dark Blue: #001240
+# Purple: #7D4E8D
+
+axes.prop_cycle: cycler('color', ['FFCD00', 'C00A35', '24A793', '5287C6', 'AA1555', 'F3965E', '6E3B23', '7D4E8D', '001240'])
+
+axes.facecolor: white
+axes.edgecolor: 000000
+axes.labelcolor: 000000
+
+figure.facecolor: white
+figure.edgecolor: 000000
+
+text.color: 000000
+
+xtick.color: 000000
+ytick.color: 000000
+
+grid.color: FFE6AB

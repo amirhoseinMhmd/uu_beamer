@@ -1,0 +1,85 @@
+%% beamercolorthemeuu.sty
+%% Utrecht University Beamer Color Theme
+%%
+%% LPPL 1.3c+
+
+\mode<presentation>
+
+\DeclareOptionBeamer{style}{%
+  \def\beamer@uu@style{#1}%
+}
+\ProcessOptionsBeamer
+
+% Utrecht University Primary Colors
+\definecolor{yellowUU}{HTML}{FFCD00}
+\definecolor{redUU}{HTML}{C00A35}
+\definecolor{blackUU}{HTML}{000000}
+\definecolor{whiteUU}{HTML}{FFFFFF}
+
+% Utrecht University Secondary Colors
+\definecolor{creamUU}{HTML}{FFE6AB}
+\definecolor{orangeUU}{HTML}{F3965E}
+\definecolor{burgundyUU}{HTML}{AA1555}
+\definecolor{brownUU}{HTML}{6E3B23}
+\definecolor{greenUU}{HTML}{24A793}
+\definecolor{blueUU}{HTML}{5287C6}
+\definecolor{darkblueUU}{HTML}{001240}
+\definecolor{purpleUU}{HTML}{7D4E8D}
+
+% Box color for blocks
+\definecolor{boxUU}{HTML}{FFF5D6}
+
+% Faculty styles (Utrecht University no longer uses faculty colors officially,
+% but we provide some options based on secondary palette for flexibility)
+\def\beamer@uu@stylelaw{law}
+\def\beamer@uu@stylemedicine{medicine}
+\def\beamer@uu@stylehumanities{humanities}
+\def\beamer@uu@stylescience{science}
+\def\beamer@uu@stylesocial{social}
+\def\beamer@uu@stylegeosciences{geosciences}
+\def\beamer@uu@styleveterinary{veterinary}
+
+\ifx\beamer@uu@style\beamer@uu@stylelaw
+  \setbeamercolor*{palette primary}{fg=white,bg=burgundyUU}%
+\else\ifx\beamer@uu@style\beamer@uu@stylemedicine
+  \setbeamercolor*{palette primary}{fg=blackUU,bg=greenUU}%
+\else\ifx\beamer@uu@style\beamer@uu@stylehumanities
+  \setbeamercolor*{palette primary}{fg=white,bg=darkblueUU}%
+\else\ifx\beamer@uu@style\beamer@uu@stylescience
+  \setbeamercolor*{palette primary}{fg=white,bg=blueUU}%
+\else\ifx\beamer@uu@style\beamer@uu@stylesocial
+  \setbeamercolor*{palette primary}{fg=white,bg=orangeUU}%
+\else\ifx\beamer@uu@style\beamer@uu@stylegeosciences
+  \setbeamercolor*{palette primary}{fg=white,bg=brownUU}%
+\else\ifx\beamer@uu@style\beamer@uu@styleveterinary
+  \setbeamercolor*{palette primary}{fg=white,bg=purpleUU}%
+\else
+  % Default: Yellow background with black text (Utrecht's signature look)
+  \setbeamercolor*{palette primary}{fg=blackUU,bg=yellowUU}%
+\fi\fi\fi\fi\fi\fi\fi
+
+\setbeamercolor{structure}{fg=blackUU,bg=white}
+
+\setbeamercolor*{palette secondary}{fg=blackUU,bg=yellowUU}
+\setbeamercolor*{palette tertiary}{fg=yellowUU,bg=blackUU}
+\setbeamercolor*{palette quarternary}{bg=white,fg=black}
+
+\setbeamercolor*{frametitle}{bg=white,fg=blackUU}
+\setbeamercolor*{framesubtitle}{fg=redUU,bg=white}
+
+% Title page colors - black text on yellow background
+\setbeamercolor*{title}{fg=blackUU,bg=yellowUU}
+\setbeamercolor*{subtitle}{fg=blackUU,bg=yellowUU}
+
+% Author/institute in white area
+\setbeamercolor*{author}{fg=blackUU,bg=whiteUU}
+\setbeamercolor*{institute}{fg=blackUU,bg=whiteUU}
+
+\setbeamercolor*{alerted text}{fg=redUU}
+\setbeamercolor*{example text}{fg=greenUU}
+
+\setbeamercolor*{normal text}{fg=blackUU,bg=white}
+
+\setbeamercolor{uu simple footline}{fg=blackUU,bg=}
+
+\mode<all>

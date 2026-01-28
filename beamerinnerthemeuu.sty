@@ -1,0 +1,149 @@
+%% beamerinnerthemeuu.sty
+%% Utrecht University Beamer Inner Theme
+%%
+%% LPPL 1.3c+
+
+\mode<presentation>
+
+\DeclareOptionBeamer{addstandoutfootline}{\def\beamer@uu@addstandoutfootline{#1}}
+\ProcessOptionsBeamer
+
+\pgfmathsetlengthmacro{\UULogoSize}{0.28\paperheight}
+
+\defbeamertemplate*{title page}{utrechtuniv}[1][]
+{%
+\titlepagetitleandsubtitle%
+\titlepageauthorandinstitute%
+}
+
+\def\titlepagetitleandsubtitle{%
+\begin{tikzpicture}[remember picture,overlay]%
+\path (current page.south west) ++ (0.490\paperwidth,0.650\paperheight) node [anchor=base,inner sep=0pt,outer sep=0pt] {%
+\parbox{0.850\paperwidth}{
+{%
+\usebeamerfont{title}%
+\color{blackUU}%
+\inserttitle%
+}%
+\ifx\insertsubtitle\@empty%
+\else%
+{%
+\usebeamerfont{subtitle}
+\color{blackUU}
+\vspace{1em}%
+\\%
+\insertsubtitle%
+}%
+\fi%
+}%
+};
+\end{tikzpicture}%
+}
+
+\def\titlepageauthorandinstitute{%
+\begin{tikzpicture}[remember picture,overlay]%
+\path (current page.south west) ++ (0.063\paperwidth,0.350\paperheight) node [anchor=west,inner sep=0pt,outer sep=0pt] {%
+\parbox{0.800\paperwidth}{
+\ifx\insertauthor\@empty%
+\else%
+{%
+\usebeamerfont{author}
+\color{whiteUU}%
+\insertauthor%
+\ifx\insertinstitute\@empty%
+.%
+\else%
+,
+\fi%
+}%
+\fi%
+\ifx\insertinstitute\@empty%
+\else%
+\usebeamerfont{institute}
+\color{whiteUU}%
+\insertinstitute%
+.%
+\fi%
+}%
+};
+\end{tikzpicture}%
+}
+
+\newcommand{\Closure}[2]{%
+    \begin{tikzpicture}[remember picture,overlay]
+        % Yellow background for closing slide
+        \fill[yellowUU] (current page.north west) rectangle (current page.south east);
+
+        \node[anchor=south west,inner sep=0pt] at (current page.south west)
+        {\includegraphics[height=\paperheight]{circles.png}};
+
+        \node[anchor=south west,inner sep=0pt] at (current page.south west)
+        {\includegraphics[height=\UULogoSize]{graphics/UU_logo_2021_EN_BLACK.png}};
+
+        % Title text - no black box
+        \node[
+            anchor=center,
+            align=center,
+            text=blackUU,
+            font=\usebeamerfont{title}
+        ] at ($(current page.center)+(0.1\paperwidth,0.05\paperheight)$)
+        {#1};
+        
+        % Subtitle text
+        \node[
+            anchor=center,
+            align=center,
+            text=blackUU,
+            font=\usebeamerfont{subtitle}
+        ] at ($(current page.center)+(0.1\paperwidth,-0.1\paperheight)$)
+        {#2};
+
+    \end{tikzpicture}%
+}
+
+
+\def\ps@navigation@titlepage{%
+    \setbeamertemplate{footline}[titlepage footline]
+    \@nameuse{ps@navigation}}
+\addtobeamertemplate{title page}{\thispagestyle{navigation@titlepage}}{}
+
+\defbeamertemplate*{itemize item}{uu}{%
+  {\usebeamerfont*{itemize item}\normalsize\textbullet}%
+}
+\defbeamertemplate*{itemize subitem}{uu}{%
+  {\usebeamerfont*{itemize subitem}\small\textbullet}%
+}
+\defbeamertemplate*{itemize subsubitem}{uu}{%
+  {\usebeamerfont*{itemize subsubitem}\scriptsize\textbullet}%
+}
+
+\setbeamertemplate{itemize item}[uu]
+\setbeamertemplate{itemize subitem}[uu]
+\setbeamertemplate{itemize subsubitem}[uu]
+
+\setlength{\leftmargini}{0.6cm}
+\setlength{\leftmarginii}{0.8cm}
+\setlength{\leftmarginiii}{1.0cm}
+
+\providebool{uu@standout}
+\define@key{beamerframe}{standout}[true]{
+\booltrue{uu@standout}
+\begingroup
+\color{blackUU}
+\setbeamercolor{background canvas}{bg=yellowUU}
+\setbeamercolor{frametitle}{fg=blackUU,bg=yellowUU}
+\setbeamercolor{framesubtitle}{fg=blackUU,bg=yellowUU}
+\ifx\beamer@uu@addstandoutfootline\@empty%
+\else%
+\setbeamertemplate{footline}{}%
+\fi%
+}
+
+\apptocmd{\beamer@reseteecodes}{%
+\ifbool{uu@standout}{%
+\endgroup
+\boolfalse{uu@standout}
+}{}
+}{}{}
+
+\mode<all>

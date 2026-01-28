@@ -1,0 +1,154 @@
+%% example.tex
+%% Utrecht University Beamer Theme Example
+%%
+%% LPPL 1.3c+
+%%
+%% COMPILE WITH: pdflatex, xelatex, or lualatex
+%% For best font support (Merriweather, Open Sans), use xelatex or lualatex
+%% pdfLaTeX will use fallback fonts (Latin Modern)
+
+\documentclass[aspectratio=169, 10pt]{beamer}
+% Options:
+% - noslidenumbering (no options), disables slide numbering
+% - style=[law, medicine, humanities, science, social, geosciences, veterinary], changes accent colour
+\usetheme[
+    % % e.g.
+    % noslidenumbering,
+    % style=science,
+]{uu}
+% Set text in the left-corner of the footer, comment to disable.
+\setuufootleft{Your Name --- Utrecht University}
+
+\usepackage{appendixnumberbeamer}
+\graphicspath{{graphics/}}
+
+\title{Utrecht University\\Beamer Template for Presentation}
+\author{A Template for Utrecht University}
+\institute{Based on the Official Brand Guidelines}
+
+\begin{document}
+    \begin{frame}[plain]
+        \titlepage
+    \end{frame}
+
+    \begin{frame}{Some Block and Styling Examples}
+        \begin{definition}
+            \textbf{Utrecht University} is one of the oldest and most prestigious research universities in the Netherlands, founded in 1636.
+        \end{definition}
+
+        \begin{alertblock}{Housing}
+            Start searching for a place to stay \alert{as soon as possible}!
+        \end{alertblock}
+
+        \begin{exampleblock}{Open}
+            Everyone is welcome!
+        \end{exampleblock}
+    \end{frame}
+
+    \begin{frame}{Some Math}
+        \textbf{Claim:} there exists an infinite amount of prime numbers
+        \begin{proof}[Proof by Contradiction]
+            Assume that the number of primes is finite, and that all such numbers are on a list: \(p_1, p_2, \dots, p_n\)
+            \smallskip
+            
+            Consider the number
+            \[N = p_1 \cdot p_2 \cdot \ldots \cdot p_n + 1\]
+            
+            For any $i \in \{1, \dots, n\}$, if we divide $N$ by $p_i$, we obtain remainder $1$. Hence no prime $p_i$ on our list divides $N$. Therefore, either $N$ itself is prime, or it has a prime factor not in our original list.
+            \smallskip
+            
+            Thus, our assumption must be false, and there must exist infinitely many prime numbers.
+        \end{proof}
+    \end{frame}
+
+    \begin{frame}[fragile]{\texttt{\textbackslash accent} Usage}
+        \texttt{\textbackslash accent} behaves exactly like \texttt{\textbackslash alert}. However, one of the theme's colours can be specified as an option to allow for easy highlighting.
+
+        \begin{table}
+            \centering
+            \begin{tabular}{l|l}
+                \toprule
+                \textbf{Visual}                     & \textbf{Command}                           \\
+                \midrule
+                \accent{highlighted}                & \verb|\accent{highlighted}|                \\
+                \accent[yellowUU]{highlighted}      & \verb|\accent[yellowUU]{highlighted}|      \\
+                \accent[creamUU]{highlighted}       & \verb|\accent[creamUU]{highlighted}|       \\
+                \accent[orangeUU]{highlighted}      & \verb|\accent[orangeUU]{highlighted}|      \\
+                \accent[burgundyUU]{highlighted}    & \verb|\accent[burgundyUU]{highlighted}|    \\
+                \accent[greenUU]{highlighted}       & \verb|\accent[greenUU]{highlighted}|       \\
+                \accent[blueUU]{highlighted}        & \verb|\accent[blueUU]{highlighted}|        \\
+                \accent[darkblueUU]{highlighted}    & \verb|\accent[darkblueUU]{highlighted}|    \\
+                \accent[purpleUU]{highlighted}      & \verb|\accent[purpleUU]{highlighted}|      \\
+                \bottomrule
+            \end{tabular}
+        \end{table}
+    \end{frame}
+
+    \begin{frame}{Two Columns}{List Examples, a Figure, and a Subtitle}
+        \begin{columns}[onlytextwidth]%
+        \begin{column}{.5\textwidth}%
+        \textbf{Itemize}
+        
+            \begin{itemize}
+                \item This is the first item.
+                \item This is the second item.
+                \begin{itemize}
+                    \item This is the first subitem.
+                    \begin{itemize}
+                        \item This is the first subsubitem.
+                    \end{itemize}
+                \end{itemize}
+            \end{itemize}
+
+            \textbf{Enumerate}
+
+            \begin{enumerate}
+                \item This is the first item.
+                \item This is the second item.
+                \begin{enumerate}
+                    \item This is the first subitem.
+                    \begin{enumerate}
+                        \item This is the first subsubitem.
+                    \end{enumerate}
+                \end{enumerate}
+            \end{enumerate}
+        \end{column}%
+        \begin{column}{.5\textwidth}%
+        \begin{figure}
+            \centering
+            \includegraphics[width=0.75\linewidth]{graphics/UU_logo_2021_EN_RGB.png}
+            \caption{Utrecht University's Logo}
+            \label{fig:uu-logo}
+        \end{figure}
+        \end{column}%
+    \end{columns}%
+    \end{frame}
+
+    \begin{frame}[fragile]{Listings Template}
+        Various styles have been provided with this theme for external tools. See the \texttt{styles} folder for external library and application styles. LaTeX-related styles have been added to \texttt{beamerthemeuu.sty}. As an example, take the following code listing to which the Listings style \texttt{uu} has been applied.
+
+        \begin{lstlisting}[language=python, style=uu]
+"""A small code example in Python"""
+def sayHi(who: str) -> None:
+    print(f'Hi {who}!')
+
+
+sayHi('Utrecht')
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[c, standout]{Standout}
+        This template reverses the colour usage. It could, for example, be used to review or recap information or draw special attention to a particular aspect.
+    \end{frame}
+
+    \begin{frame}[plain]
+        \Closure
+            {Thank you}{Questions?}
+    \end{frame}
+
+    % To add references, uncomment below, and be sure to set your reference file.
+    % \appendix
+    % \begin{frame}[allowframebreaks]{References}
+    %     \printbibliography
+    % \end{frame}
+\end{document}
